@@ -7,8 +7,10 @@ plugins {
     id("com.github.johnrengelman.shadow") version "6.1.0"
     id("org.jmailen.kotlinter") version "3.3.0"
     id("edu.sc.seis.launch4j") version "2.4.9"
+    id("de.fuerstenau.buildconfig") version "1.1.8"
 }
 
+val group = "ir.armor.tachidesk"
 val TachideskVersion = "v0.2.7"
 
 
@@ -205,6 +207,15 @@ tasks.named("processResources") {
 
 tasks.named("run") {
     dependsOn("formatKotlin", "lintKotlin")
+}
+
+buildConfig {
+    version = TachideskVersion
+
+    clsName = "BuildConfig"
+    packageName = group.toString()
+
+    buildConfigField("boolean", "DEBUG", project.hasProperty("debugApp").toString())
 }
 
 

@@ -19,6 +19,7 @@ import ir.armor.tachidesk.impl.getPageImage
 import ir.armor.tachidesk.impl.getSource
 import ir.armor.tachidesk.impl.getSourceList
 import ir.armor.tachidesk.impl.getThumbnail
+import ir.armor.tachidesk.impl.getVersion
 import ir.armor.tachidesk.impl.installAPK
 import ir.armor.tachidesk.impl.removeCategory
 import ir.armor.tachidesk.impl.removeExtension
@@ -213,6 +214,11 @@ fun javalinSetup() {
     // lists mangas that have no category assigned
     app.get("/api/v1/library/") { ctx ->
         ctx.json(getLibraryMangas())
+    }
+
+    // lists mangas that have no category assigned
+    app.get("/api/v1/version/") { ctx ->
+        ctx.json(getVersion())
     }
 
     // category list
